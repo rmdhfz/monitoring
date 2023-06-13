@@ -40,13 +40,20 @@
 
         file_put_contents($filename, $followers_count);
         $difference = $followers_count - $previousCount;
+        $increase   = $previousCount - $followers_count;
 
         echo "Tanggal: $date \n \n"."<br>";
         echo "Jumlah Pengikut Saat Ini: $followers_count \n \n <br>";
         echo "Perbedaan Dibandingkan Sebelumnya: $difference \n \n<br>";
+        echo "Bertambah sejumlah: $increase <br>";
     }
 
-    $username   = "hfzrmd";
+    if (!isset($_GET['username'])) {
+        echo 'Silahkan masukkan username terlebih dahulu';
+        return;
+    }
+
+    $username = $_GET['username'];
     echo 'Mengambil data instagram untuk: '.$username.' <br>';
     echo '-------------------------------------------------- <br>';
     $result     = instagram($username);
